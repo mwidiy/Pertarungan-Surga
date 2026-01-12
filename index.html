@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Arena 3D</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Mencegah scrollbar muncul */
+        }
+        canvas {
+            display: block; /* Menghilangkan spasi ekstra di bawah canvas */
+        }
+
+        /* CSS untuk HP Bar */
+        #player-hp-bar-container {
+            position: absolute; /* Penting agar bisa diatur posisinya */
+            top: 0; /* Akan diupdate oleh JS */
+            left: 0; /* Akan diupdate oleh JS */
+            width: 60px; /* Lebar bar */
+            height: 8px; /* Tinggi bar */
+            background-color: #555; /* Warna latar belakang (HP kosong) */
+            border: 1px solid black;
+            border-radius: 2px;
+            transform: translate(-50%, -100%); /* Geser agar tengahnya pas di atas kepala */
+            pointer-events: none; /* Agar tidak mengganggu klik mouse */
+            visibility: hidden; /* Sembunyikan di awal */
+            z-index: 10; /* Pastikan di atas canvas */
+        }
+
+        #player-hp-bar-fill {
+            width: 100%; /* Lebar awal (HP penuh) - Akan diupdate JS */
+            height: 100%;
+            background-color: #22c55e; /* Warna hijau untuk HP */
+            border-radius: 1px;
+            transition: width 0.2s ease-out; /* Animasi halus saat HP berubah */
+        }
+
+        #enemy-hp-bars-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Biar tidak ganggu klik */
+            z-index: 9; /* Di bawah HP Player */
+        }
+
+        .enemy-hp-bar-container {
+            position: absolute;
+            width: 50px; /* Lebih kecil dari player */
+            height: 6px;
+            background-color: #555;
+            border: 1px solid black;
+            border-radius: 2px;
+            transform: translate(-50%, -100%);
+            visibility: hidden; /* Sembunyi awal */
+        }
+        
+        .enemy-hp-bar-fill {
+            width: 100%;
+            height: 100%;
+            background-color: #ef4444; /* Warna merah untuk musuh */
+            border-radius: 1px;
+            transition: width 0.2s ease-out;
+        }
+
+
+        /* Style untuk Container Energi Gaib */
+        #player-ce-bar-container {
+            position: absolute;
+            top: 0; /* Akan diupdate JS */
+            left: 0; /* Akan diupdate JS */
+            width: 60px; /* Samakan lebar dengan HP */
+            height: 6px; /* Sedikit lebih tipis */
+            background-color: #333; /* Latar belakang gelap */
+            border: 1px solid black;
+            border-radius: 2px;
+            transform: translate(-50%, 0%); /* Geser agar tengahnya pas, tapi TIDAK naik */
+            pointer-events: none; 
+            visibility: hidden; 
+            z-index: 9; /* Sedikit di bawah HP */
+        }
+
+        /* Style untuk Fill Energi Gaib */
+        #player-ce-bar-fill {
+            width: 100%; 
+            height: 100%;
+            background-color: #3b82f6; /* Warna biru */
+            border-radius: 1px;
+            transition: width 0.2s ease-out; 
+        }
+    </style>
+</head>
+<body>
+    <div id="player-hp-bar-container">
+        <div id="player-hp-bar-fill"></div>
+    </div>
+
+    <div id="player-ce-bar-container">
+        <div id="player-ce-bar-fill"></div>
+    </div>
+
+    <div id="enemy-hp-bars-area"></div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+            "three/": "https://unpkg.com/three@0.157.0/"
+        }
+    }
+    </script>
+
+    <script type="module" src="js/main1.js"></script>
+</body>
+</html>
